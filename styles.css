@@ -217,6 +217,29 @@ footer .Linkdn a:hover .icon {
   fill: #64ffda; /* Hover color */
   transform: scale(1.2); /* Scale up on hover */
 }
+footer .Telegram {
+  display: inline-block;
+}
+
+footer .Telegram a {
+  display: inline-flex; /* Ensure the icon scales nicely */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; /* Remove underline from link */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+footer .Telegram .icon {
+  width: 24px;
+  height: 24px;
+  fill: #8892b0; /* Default color */
+  transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+footer .Telegram a:hover .icon {
+  fill: #64ffda; /* Hover color */
+  transform: scale(1.2); /* Scale up on hover */
+}
 
 /* Animations */
 @keyframes fadeIn {
