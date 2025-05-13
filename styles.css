@@ -86,9 +86,7 @@ h1, h2 {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-.project-content {
-  padding: 20px;
-}
+
 
 .project-content h3 {
   margin-bottom: 10px;
@@ -97,7 +95,7 @@ h1, h2 {
 
 .project-content p {
   height: 63px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   color: #8892b0;
 }
 
