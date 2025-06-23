@@ -27,7 +27,7 @@ function App() {
         <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
           <div className="nav-content">
             {/* Use Link component for the logo to go to the top */}
-            <Link to="/" className="logo">Shahram</Link>
+            <Link to="/" className="logo">Shahram Halimzoda</Link>
             <div className="nav-links">
               {/* IMPORTANT: Change all <a> tags to <Link> tags */}
               <Link to="/about">About</Link>
