@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
-import Hero from './components/Hero'
-import About from './components/About'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import './App.css'
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'; // Import Link
+import Home from './pages/home';
+import Footer from './components/Footer';
+import ScrollToSection from './ScrollToSection'; 
+import './App.css';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -20,35 +19,45 @@ function App() {
   }, []);
 
   return (
-    <div className={`app ${darkMode ? 'dark' : 'light'}`}>
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="nav-content">
-          <span className="logo"></span>
-          <div className="nav-links">
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-            <button 
-              className="theme-toggle"
-              onClick={() => setDarkMode(!darkMode)}
-              aria-label="Toggle theme"
-            >
-              {darkMode ? '☀️' : '🌙'}
-            </button>
+    <BrowserRouter>
+   
+      <ScrollToSection />
+
+      <div className={`app ${darkMode ? 'dark' : 'light'}`}>
+        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+          <div className="nav-content">
+            {/* Use Link component for the logo to go to the top */}
+            <Link to="/" className="logo">Shahram</Link>
+            <div className="nav-links">
+              {/* IMPORTANT: Change all <a> tags to <Link> tags */}
+              <Link to="/about">About</Link>
+              <Link to="/projects">Projects</Link>
+              <Link to="/contact">Contact</Link>
+              <button
+                className="theme-toggle"
+                onClick={() => setDarkMode(!darkMode)}
+                aria-label="Toggle theme"
+              >
+                {darkMode ? '☀️' : '🌙'}
+              </button>
+            </div>
           </div>
-        </div>
-      </nav>
-      
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Contact />
-      </main>
-      
-      <Footer />
-    </div>
-  )
+        </nav>
+
+        <main>
+          <Routes>
+            {/* All routes now point to the same Home component */}
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<Home />} />
+            <Route path="/projects" element={<Home />} />
+            <Route path="/contact" element={<Home />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
