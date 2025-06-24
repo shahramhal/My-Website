@@ -1,0 +1,17 @@
+# This file tells Netlify how to build and deploy your site.
+
+[build]
+  # This is the command to build your React app (Vite).
+  command = "npm run build"
+
+  # This is the directory that contains the built site.
+  publish = "dist"
+
+  # This tells Netlify where to find our serverless functions.
+  functions = "netlify/functions"
+
+# This rule makes sure your React Router works correctly.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
