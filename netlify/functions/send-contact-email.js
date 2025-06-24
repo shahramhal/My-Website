@@ -1,7 +1,7 @@
 // This is your serverless function code.
 // It runs on Node.js in the cloud.
 
-exports.handler = async function(event, context) {
+exports.handler  = async function(event, context) {
     // We only care about POST requests to this function.
     if (event.httpMethod !== 'POST') {
       return {

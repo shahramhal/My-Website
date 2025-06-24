@@ -17,7 +17,7 @@ const Contact = () => {
 
     try {
       // Send the form data to our serverless function
-      const response = await fetch('/.netlify/functions/send-contact-email', {
+      const response = await fetch('/netlify/functions/send-contact-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
