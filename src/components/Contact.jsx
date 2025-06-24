@@ -7,49 +7,32 @@ const Contact = () => {
     message: ''
   });
 
-  const [status, setStatus] = useState('idle'); // 'idle', 'sending', 'sent', 'error'
   const [feedbackMessage, setFeedbackMessage] = useState('');
 
-  const handleSubmit = async (e) => {
+  // This helper function prepares the form data for submission
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  }
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus('sending');
-    setFeedbackMessage('');
 
-    try {
-      // Send the form data to our serverless function
-      const response = await fetch('/netlify/functions/send-contact-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setStatus('sent');
-        setFeedbackMessage(result.message);
-        setFormData({ name: '', email: '', message: '' }); // Clear the form
-      } else {
-        // Handle errors from the serverless function
-        setStatus('error');
-        setFeedbackMessage(result.message || 'An error occurred.');
-      }
-    } catch (error) {
-      // Handle network errors
-      console.error('Submission error:', error);
-      setStatus('error');
-      setFeedbackMessage('A network error occurred. Please try again.');
-    }
-
-    // Allow the user to try again after a few seconds
-    setTimeout(() => {
-        if (status !== 'sending') {
-            setStatus('idle');
-        }
-    }, 4000);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", ...formData })
+    })
+    .then(() => {
+        setFeedbackMessage("Thank you! Your message has been sent.");
+        setFormData({ name: '', email: '', message: '' }); // Clear form
+    })
+    .catch(error => {
+        setFeedbackMessage(`Error: ${error}`);
+    });
   };
+
 
   const handleChange = (e) => {
     setFormData({
@@ -57,15 +40,6 @@ const Contact = () => {
       [e.target.name]: e.target.value
     });
   };
-  
-  const getButtonText = () => {
-      switch(status) {
-          case 'sending': return 'Sending...';
-          case 'sent': return 'Sent!';
-          case 'error': return 'Try Again';
-          default: return 'Send Message';
-      }
-  }
 
   return (
     <section id="contact" className="contact-section">
@@ -75,7 +49,18 @@ const Contact = () => {
           I'm always interested in hearing about new opportunities, collaborations, or just having a chat about technology!
         </p>
 
-        <form className="contact-form" onSubmit={handleSubmit}>
+        {/* --- CHANGES ARE HERE --- */}
+        {/* We add the data-netlify attribute and a hidden input */}
+        <form
+          className="contact-form"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          onSubmit={handleSubmit}
+        >
+          {/* This hidden input is required for Netlify Forms to work with React */}
+          <input type="hidden" name="form-name" value="contact" />
+
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
@@ -118,19 +103,11 @@ const Contact = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className={`submit-btn ${status}`}
-            disabled={status === 'sending'}
-          >
-            {getButtonText()}
+          <button type="submit" className="submit-btn">
+            Send Message
           </button>
           
-          {feedbackMessage && (
-            <p className={`feedback-message ${status}`}>
-                {feedbackMessage}
-            </p>
-          )}
+          {feedbackMessage && <p>{feedbackMessage}</p>}
         </form>
       </div>
     </section>
@@ -138,3 +115,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
