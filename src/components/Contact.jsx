@@ -6,10 +6,8 @@ const Contact = () => {
     email: '',
     message: ''
   });
-
   const [feedbackMessage, setFeedbackMessage] = useState('');
 
-  // This helper function prepares the form data for submission
   const encode = (data) => {
     return Object.keys(data)
       .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -25,14 +23,13 @@ const Contact = () => {
       body: encode({ "form-name": "contact", ...formData })
     })
     .then(() => {
-        setFeedbackMessage("Thank you! Your message has been sent.");
-        setFormData({ name: '', email: '', message: '' }); // Clear form
+      setFeedbackMessage("Thank you! Your message has been sent.");
+      setFormData({ name: '', email: '', message: '' });
     })
     .catch(error => {
-        setFeedbackMessage(`Error: ${error}`);
+      setFeedbackMessage(`Error: ${error}`);
     });
   };
-
 
   const handleChange = (e) => {
     setFormData({
@@ -49,16 +46,13 @@ const Contact = () => {
           I'm always interested in hearing about new opportunities, collaborations, or just having a chat about technology!
         </p>
 
-        {/* --- CHANGES ARE HERE --- */}
-        {/* We add the data-netlify attribute and a hidden input */}
         <form
           className="contact-form"
-          name="contact"
+          name="contact" // Name must match the hidden form
           method="POST"
-          data-netlify="true"
           onSubmit={handleSubmit}
         >
-          {/* This hidden input is required for Netlify Forms to work with React */}
+          {/* Note: We do NOT need data-netlify="true" on this form because the hidden one handles detection */}
           <input type="hidden" name="form-name" value="contact" />
 
           <div className="form-group">
@@ -74,7 +68,7 @@ const Contact = () => {
               placeholder="Your Name"
             />
           </div>
-
+          
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -107,7 +101,7 @@ const Contact = () => {
             Send Message
           </button>
           
-          {feedbackMessage && <p>{feedbackMessage}</p>}
+          {feedbackMessage && <p style={{marginTop: '1rem', textAlign: 'center'}}>{feedbackMessage}</p>}
         </form>
       </div>
     </section>
@@ -115,4 +109,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
