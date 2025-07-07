@@ -52,11 +52,11 @@ const About = () => {
           <div className="skills-container">
             <h3>Technical Skills</h3>
             {[
-              { name: 'JavaScript', level: 85 },
-              { name: 'React', level: 80 },
-              { name: 'Python', level: 75 },
-              { name: 'Node.js', level: 70 },
-              { name: 'SQL', level: 65 }
+              { name: 'Python', level: 85 },
+              { name: 'Java', level: 75 },
+              { name: 'SQL', level: 75 },
+              { name: 'Django', level: 70 },
+              { name: 'Node.js', level: 65 }
             ].map((skill) => (
               <div key={skill.name} className="skill-bar-container">
                 <div className="skill-info">
