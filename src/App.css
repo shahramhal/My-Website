@@ -410,6 +410,31 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  background: var(--card-bg);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  border: 1px solid rgba(100,255,218,0.1);
+  transition: all 0.3s ease;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.skill-tag:hover {
+  background: var(--primary);
+  color: var(--bg-main);  
+}
+
 /* Contact Section */
 .contact-section {
   padding: 100px 20px;
