@@ -20,6 +20,27 @@ const Hero = () => {
     return () => observer.disconnect();
   }, []);
 
+  const handleScrollToProjects = (e) => {
+    e.preventDefault();
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  const handleScrollDown = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <section id="hero" className="hero-section">
       <div className="hero-background">
@@ -49,13 +70,13 @@ const Hero = () => {
           Passionate about technology, sports, and music
         </p>
         <div className="cta-container">
-          <a href="#projects" className="cta-button">
+          <a href="#projects" className="cta-button" onClick={handleScrollToProjects}>
             View My Work
             <span className="arrow">→</span>
           </a>
         </div>
       </div>
-      <div className="scroll-indicator">
+      <div className="scroll-indicator" onClick={handleScrollDown} style={{ cursor: 'pointer' }}>
         <div className="mouse">
           <div className="wheel"></div>
         </div>

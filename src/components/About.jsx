@@ -51,26 +51,77 @@ const About = () => {
           </div>
           <div className="skills-container">
             <h3>Technical Skills</h3>
-            {[
-              { name: 'Python', level: 85 },
-              { name: 'Java', level: 75 },
-              { name: 'SQL', level: 75 },
-              { name: 'Django', level: 70 },
-              { name: 'Node.js', level: 65 }
-            ].map((skill) => (
-              <div key={skill.name} className="skill-bar-container">
-                <div className="skill-info">
-                  <span>{skill.name}</span>
-                  <span>{skill.level}%</span>
+            <div className="skills-grid-new">
+              {[
+                { 
+                  name: 'Python',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+                  color: '#3776AB'
+                },
+                { 
+                  name: 'Java',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
+                  color: '#007396'
+                },
+                { 
+                  name: 'JavaScript',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+                  color: '#F7DF1E'
+                },
+                { 
+                  name: 'SQL',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+                  color: '#4479A1'
+                },
+                { 
+                  name: 'Django',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg',
+                  color: '#092E20'
+                },
+                { 
+                  name: 'React',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+                  color: '#61DAFB'
+                },
+                { 
+                  name: 'Kotlin',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg',
+                  color: '#7F52FF'
+                },
+                { 
+                  name: 'HTML/CSS',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+                  color: '#E34F26'
+                },
+                { 
+                  name: 'Git',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+                  color: '#F05032'
+                },
+                { 
+                  name: 'Docker',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+                  color: '#2496ED'
+                },
+                { 
+                  name: 'Agile',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg',
+                  color: '#0052CC'
+                },
+                { 
+                  name: 'REST APIs',
+                  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
+                  color: '#009688'
+                }
+              ].map((skill) => (
+                <div key={skill.name} className="skill-card-new">
+                  <div className="skill-icon" style={{ backgroundColor: `${skill.color}15` }}>
+                    <img src={skill.logo} alt={skill.name} className="skill-logo" />
+                  </div>
+                  <span className="skill-name-new">{skill.name}</span>
                 </div>
-                <div className="skill-bar">
-                  <div 
-                    className="skill-progress" 
-                    style={{ width: `${skill.level}%` }}
-                  />
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

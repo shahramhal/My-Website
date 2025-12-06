@@ -311,6 +311,8 @@ body {
 }
 
 /* Skills Section */
+/* Skills Section - Card Design matching Projects */
+/* Skills Section - Card Design matching Projects */
 .skills-container {
   background: var(--card-bg);
   padding: 2rem;
@@ -318,30 +320,93 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.skill-bar-container {
-  margin: 1.5rem 0;
+.skills-container h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+  font-size: 1.5rem;
 }
 
-.skill-info {
+.skills-grid-new {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.skill-card-new {
+  background: var(--bg-main);
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1.5px solid rgba(100, 255, 218, 0.08);
+  transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s, border-color 0.25s;
+  cursor: default;
+  text-align: center;
 }
 
-.skill-bar {
-  height: 8px;
-  background: rgba(100, 255, 218, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
+.skill-card-new:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(100, 255, 218, 0.15), 0 2px 8px rgba(0, 0, 0, 0.10);
+  border-color: var(--primary);
 }
 
-.skill-progress {
+.skill-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  padding: 0.75rem;
+}
+
+.skill-logo {
+  width: 100%;
   height: 100%;
-  background: var(--primary);
-  border-radius: 4px;
-  transform-origin: left;
-  animation: growBar 1.5s ease-out forwards;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
+
+.skill-card-new:hover .skill-logo {
+  transform: scale(1.1);
+}
+
+.skill-name-new {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid-new {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .skill-card-new {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .skill-icon {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Remove old styles */
+.skills-list,
+.skill-bar-container,
+.skill-info,
+.skill-bar,
+.skill-progress {
+  display: none;
+}
+
 /* Projects Section */
 #projects {
   padding: 50px 20px;
@@ -629,3 +694,120 @@ body {
 main {
   padding-top: 80px;
 }
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced scroll padding to account for fixed navbar */
+html {
+  scroll-padding-top: 80px;
+}
+
+/* CTA Button Click Animation */
+.cta-button {
+  position: relative;
+}
+
+.cta-button:active {
+  transform: scale(0.95);
+}
+
+/* Add ripple effect on click */
+.cta-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(100, 255, 218, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s, opacity 0.6s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cta-button:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+}
+
+/* Fade in animation for sections when they come into view */
+@keyframes fadeInSection {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-view {
+  animation: fadeInSection 0.8s ease-out forwards;
+}
+
+/* Projects section entrance animation */
+.projects-section {
+  opacity: 0;
+  animation: fadeInSection 0.8s ease-out 0.2s forwards;
+}
+
+/* Project cards stagger animation */
+.project-card {
+  opacity: 0;
+  animation: fadeInSection 0.6s ease-out forwards;
+}
+
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.2s; }
+.project-card:nth-child(3) { animation-delay: 0.3s; }
+.project-card:nth-child(4) { animation-delay: 0.4s; }
+.project-card:nth-child(5) { animation-delay: 0.5s; }
+.project-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Enhanced navbar scroll behavior */
+.navbar {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth transitions for all links */
+.nav-links a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Scroll indicator click animation */
+.scroll-indicator {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.scroll-indicator:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+
+.scroll-indicator:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
