@@ -37,20 +37,6 @@ ProjectCard.propTypes = {
 const Projects = () => {
   const projects = [
     {
-      title: "Personal Finance Tracker",
-      description: "Python program to track personal incomes and expenses.",
-      githubLink: "https://github.com/shahramhal/Personal-Finance-Tracker.git",
-      image: "/images/finance.png",
-      skills: "Python, Tkinter, matplotlib"
-    },
-    {
-      title: "Mystery World Game",
-      description: "Mystery World Game.Developed in C++ using OOP concepts.",
-      githubLink: "https://github.com/shahramhal/MysteryWorld",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-      skills: "C++ ,OOP"
-    },
-    {
       title: "HealthCheck App",
       description: "Python-Django based project developed to check mental health of a SKY employees with roles and permissions.",
       githubLink: "https://github.com/shahramhal/SkyScore",
@@ -58,17 +44,38 @@ const Projects = () => {
       skills: "Python, Django, SQL, HTML, CSS, JavaScript"
     },
     {
+      title: "Corner House Website",
+      description: "A responsive website for a fictional restaurant called 'Corner House', showcasing menu and contact information.",
+      githubLink: "https://fantastic-haupia-94558e.netlify.app",
+      image: "/images/corner-house.png",
+      skills: "React.js, CSS, HTML"
+    },
+     {title:"Dice Game",
+      description:"A Kotlin-based Android dice game application built with Jetpack Compose, implementing a competitive game between a human player and computer AI.",
+      githubLink:"https://github.com/shahramhal/DiceGame",
+      image:"/images/dice.png",
+      skills: "Kotlin, Jetpack Compose"
+    },
+    {
+      title: "Personal Finance Tracker",
+      description: "Python program to track personal incomes and expenses.",
+      githubLink: "https://github.com/shahramhal/Personal-Finance-Tracker.git",
+      image: "/images/finance.png",
+      skills: "Python, Tkinter, matplotlib"
+    },   
+    {
       title:"Weather App",
       description:"Weather App using Java and OpenWeatherMap API.",
       githubLink:"https://github.com/shahramhal/Weather-Application",
       image:"/images/weather.png",
       skills: "Java, OpenWeatherMap API"
     },
-    {title:"Dice Game",
-      description:"A Kotlin-based Android dice game application built with Jetpack Compose, implementing a competitive game between a human player and computer AI.",
-      githubLink:"https://github.com/shahramhal/DiceGame",
-      image:"/images/dice.png",
-      skills: "Kotlin, Jetpack Compose"
+    {
+      title: "Mystery World Game",
+      description: "Mystery World Game.Developed in C++ using OOP concepts.",
+      githubLink: "https://github.com/shahramhal/MysteryWorld",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+      skills: "C++ ,OOP"
     }
   ];
 
