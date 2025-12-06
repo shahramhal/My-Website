@@ -46,7 +46,7 @@ const Projects = () => {
     {
       title: "Mystery World Game",
       description: "Mystery World Game.Developed in C++ using OOP concepts.",
-      githubLink: "https://github.com/your-repo/project2",
+      githubLink: "https://github.com/shahramhal/MysteryWorld",
       image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
       skills: "C++ ,OOP"
     },
