@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const ProjectCard = ({ title, description, githubLink, image ,skills}) => {
+const ProjectCard = ({ title, description, githubLink, image, skills, icon, featured }) => {
+  const [imageFailed, setImageFailed] = useState(false);
+
   const handleCardClick = () => {
-    
     if (githubLink) {
       window.open(githubLink, '_blank');
     }
@@ -11,9 +13,21 @@ const ProjectCard = ({ title, description, githubLink, image ,skills}) => {
   return (
     <div className="project-card" onClick={handleCardClick} style={{ cursor: githubLink ? 'pointer' : 'default' }}>
       <div className="project-content">
-        <h3>{title}</h3>
-        {image && (
-          <img src={image} alt={title} className="project-image" style={{ width: '100%', borderRadius: '8px', margin: '10px 0' }} />
+        <div className="project-card-top">
+          <h3>{title}</h3>
+          {featured && <span className="project-badge">Featured</span>}
+        </div>
+        {image && !imageFailed ? (
+          <img
+            src={image}
+            alt={title}
+            className="project-image"
+            onError={() => setImageFailed(true)}
+          />
+        ) : (
+          <div className="project-banner" aria-hidden="true">
+            <span className="project-banner-icon">{icon}</span>
+          </div>
         )}
         <p>{description}</p>
         <div className="skill-tags">
@@ -32,50 +46,50 @@ ProjectCard.propTypes = {
   githubLink: PropTypes.string,
   image: PropTypes.string,
   skills: PropTypes.string,
+  icon: PropTypes.string,
+  featured: PropTypes.bool,
 };
 
 const Projects = () => {
   const projects = [
     {
-      title: "HealthCheck App",
-      description: "Python-Django based project developed to check mental health of a SKY employees with roles and permissions.",
+      title: "Build Your Career - AI Career Coach",
+      description: "Full-stack AI-powered platform helping job seekers optimize their CVs, get personalized feedback, and match with relevant jobs. An LLM-based CV parser (~90% extraction accuracy) and NLP-driven ATS scoring engine compare CVs against job descriptions, backed by a salary prediction model and semantic job matching across a five-service microservices architecture.",
+      githubLink: "https://github.com/shahramhal/AI-Creer-Coach",
+      image: "/images/ai-career-coach.png",
+      icon: "🤖",
+      featured: true,
+      skills: "Next.js, TypeScript, Node.js, Express, Python, FastAPI, PostgreSQL, MongoDB, Docker"
+    },
+    {
+      title: "Restaurant & Coffee Shop POS System",
+      description: "Commercial, offline-first point-of-sale system for restaurants and cafes on Windows. Supports table-service and counter-service modes, split/card/cash payments with automatic tax calculation, kitchen ticket and receipt printing, role-based staff PINs, stock tracking, and automated end-of-day PDF reports delivered via Telegram. Licensed per-location to real venues, currently at v1.3.2.",
+      githubLink: "https://github.com/shahramhal/pos-releases",
+      image: "/images/pos-system.png",
+      icon: "🧾",
+      featured: true,
+      skills: "Electron, TypeScript, Node.js, SQLite"
+    },
+    {
+      title: "SKY Employee Health Check System",
+      description: "Full-stack employee wellbeing platform led for a 5-member team using Agile methodology. Built a digital health survey system with an admin dashboard so managers can monitor employee wellbeing across the organisation, including all backend logic for registration, voting, and database design.",
       githubLink: "https://github.com/shahramhal/SkyScore",
       image: "/images/SKY.png",
-      skills: "Python, Django, SQL, HTML, CSS, JavaScript"
+      skills: "Python, Django, SQLite, HTML/CSS, Bootstrap, Docker"
     },
     {
-      title: "Corner House Website",
-      description: "A responsive website for a fictional restaurant called 'Corner House', showcasing menu and contact information.",
+      title: "The Corner House Dinner",
+      description: "Production website for a real restaurant serving 100+ daily customers. Owned the full deployment pipeline from development through to production launch.",
       githubLink: "https://fantastic-haupia-94558e.netlify.app",
       image: "/images/corner-house.png",
-      skills: "React.js, CSS, HTML"
+      skills: "React.js, Tailwind CSS"
     },
-     {title:"Dice Game",
-      description:"A Kotlin-based Android dice game application built with Jetpack Compose, implementing a competitive game between a human player and computer AI.",
-      githubLink:"https://github.com/shahramhal/DiceGame",
-      image:"/images/dice.png",
+    {
+      title: "Dice Game",
+      description: "Kotlin-based Android dice game built with Jetpack Compose, implementing a competitive game between a human player and a computer opponent.",
+      githubLink: "https://github.com/shahramhal/DiceGame",
+      image: "/images/dice.png",
       skills: "Kotlin, Jetpack Compose"
-    },
-    {
-      title: "Personal Finance Tracker",
-      description: "Python program to track personal incomes and expenses.",
-      githubLink: "https://github.com/shahramhal/Personal-Finance-Tracker.git",
-      image: "/images/finance.png",
-      skills: "Python, Tkinter, matplotlib"
-    },   
-    {
-      title:"Weather App",
-      description:"Weather App using Java and OpenWeatherMap API.",
-      githubLink:"https://github.com/shahramhal/Weather-Application",
-      image:"/images/weather.png",
-      skills: "Java, OpenWeatherMap API"
-    },
-    {
-      title: "Mystery World Game",
-      description: "Mystery World Game.Developed in C++ using OOP concepts.",
-      githubLink: "https://github.com/shahramhal/MysteryWorld",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-      skills: "C++ ,OOP"
     }
   ];
 
@@ -90,6 +104,8 @@ const Projects = () => {
             description={project.description}
             githubLink={project.githubLink}
             image={project.image}
+            icon={project.icon}
+            featured={project.featured}
             skills={project.skills}
           />
         ))}

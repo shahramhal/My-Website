@@ -31,8 +31,12 @@ function App() {
             <div className="nav-links">
               {/* IMPORTANT: Change all <a> tags to <Link> tags */}
               <Link to="/about">About</Link>
+              <Link to="/experience">Experience</Link>
               <Link to="/projects">Projects</Link>
               <Link to="/contact">Contact</Link>
+              <a href="/Shahram_Halimzoda_Resume.docx" className="nav-resume-link" download>
+                Resume
+              </a>
               <button
                 className="theme-toggle"
                 onClick={() => setDarkMode(!darkMode)}
@@ -49,6 +53,7 @@ function App() {
             {/* All routes now point to the same Home component */}
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<Home />} />
+            <Route path="/experience" element={<Home />} />
             <Route path="/projects" element={<Home />} />
             <Route path="/contact" element={<Home />} />
           </Routes>
